@@ -8,12 +8,12 @@ fetch(
     const element = data.results;
     for (let i = 0; i < element.length; i++) {
       const liElement = document.createElement("li");
-      const title = document.createElement("h3")
+      const title = document.createElement("h2");
       title.innerText = element[i].nom;
-      const adress = document.createElement('div')
+      const adress = document.createElement("span");
       adress.innerText = element[i].adresse;
-      liElement.appendChild(title)
-      liElement.appendChild(adress)
+      liElement.appendChild(title);
+      liElement.appendChild(adress);
       ulElement.appendChild(liElement);
     }
   });
