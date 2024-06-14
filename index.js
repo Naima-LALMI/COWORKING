@@ -1,6 +1,7 @@
 const ulElement = document.querySelector("ul");
 fetch(
-  "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/coworking-france/records?limit=20&refine=ville%3A%22Paris%22"
+  "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/coworking-france/records?limit=40&refine=ville%3A%22Paris%22"
+  // "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/coworking-france/records?limit=20&refine=ville%3A%22Paris%22"
 )
   .then((r) => r.json())
   .then((data) => {
@@ -17,3 +18,15 @@ fetch(
       ulElement.appendChild(liElement);
     }
   });
+
+//MAP INTEGRATION//
+//Coordonnée de PARIS //
+var map = L.map("map").setView([48.866667, 2.333333], 13);
+//Ajout des tuiles à la map
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+//Ajout Marqueur de Paris 
+var marker = L.marker([48.866667, 2.333333]).addTo(map);
+marker.bindPopup("PARIS ").openPopup();
