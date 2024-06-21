@@ -3,17 +3,11 @@
 var map_Paris = L.map("map").setView([48.866667, 2.333333], 13);
 
 //Ajout des tuiles à la map
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  attribution:
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map_Paris);
-
-//Ajout Marqueur de Paris 
-var long = 2.35
-var lat = 48.866667;
-var marker = L.marker([lat, long]).addTo(map_Paris);
- marker.bindPopup("PARIS") 
- //.openPopup(); 
 
 const ulElement = document.querySelector("ul");
 
@@ -26,24 +20,23 @@ fetch(
     console.log(data);
     const element = data.results;
     for (let i = 0; i < element.length; i++) {
-    
       const liElement = document.createElement("li");
       const title = document.createElement("h2");
       title.innerText = element[i].nom;
       const adress = document.createElement("span");
       adress.innerText = element[i].adresse;
-      const cp = document.createElement('span');
+      const cp = document.createElement("span");
       cp.innerText = element[i].cp;
       const ville = document.createElement("span");
       ville.innerText = ` ${element[i].ville}`;
       const lien = document.createElement("a");
       lien.href = lien.innerHTML = element[i].web;
       //
-        //Marqueur Coworking + donnée lat/long
-        const longtitude = element[i].coordonnees.lon;
-        const latitude = element[i].coordonnees.lat;
-        var marker1 = L.marker([latitude,longtitude]).addTo(map_Paris)
-        marker1.bindPopup(`${element[i].nom}`)
+      //Marqueur Coworking + donnée lat/long
+      const longtitude = element[i].coordonnees.lon;
+      const latitude = element[i].coordonnees.lat;
+      var marker1 = L.marker([latitude, longtitude]).addTo(map_Paris);
+      marker1.bindPopup(`${element[i].nom}`);
 
       //
       ulElement.appendChild(liElement);
@@ -53,8 +46,6 @@ fetch(
       liElement.appendChild(cp);
       liElement.appendChild(ville);
       liElement.appendChild(document.createElement("br")); // Ajoute un saut de ligne
-      liElement.appendChild(lien)
-    
+      liElement.appendChild(lien);
     }
   });
-
