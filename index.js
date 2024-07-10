@@ -1,6 +1,6 @@
 //MAP INTEGRATION//
 //var map = L.map("map").setView([46.227638,2.213749],13);
-var map_Paris = L.map("map").setView([48.866667, 2.333333], 13);
+var map_Paris = L.map("map").setView([48.866667, 2.333333], 12);
 
 //Ajout des tuiles à la map
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -17,7 +17,6 @@ fetch(
 )
   .then((r) => r.json())
   .then((data) => {
-    console.log(data);
     const element = data.results;
     for (let i = 0; i < element.length; i++) {
       const liElement = document.createElement("li");
@@ -30,14 +29,16 @@ fetch(
       const ville = document.createElement("span");
       ville.innerText = ` ${element[i].ville}`;
       const lien = document.createElement("a");
-      lien.href = lien.innerHTML = element[i].web;
+      lien.href = "http://" + element[i].web;
+      lien.innerHTML = "<strong>Clique sur le lien</strong>";
+      console.log(element[i].web);
       //
       //Marqueur Coworking + donnée lat/long
       const longtitude = element[i].coordonnees.lon;
       const latitude = element[i].coordonnees.lat;
       var marker1 = L.marker([latitude, longtitude]).addTo(map_Paris);
-      marker1.bindPopup(`${element[i].nom}`);
-
+      marker1.bindPopup(`${ element[i].nom}<br><a href="${lien.href}">Visitez ce site</a>`);
+      //console.log("laila was here", element, element[i]);
       //
       ulElement.appendChild(liElement);
       liElement.appendChild(title);
