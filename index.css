@@ -1,12 +1,67 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    line-height: 1.5;
+    font-family: 'Playwrite CU', sans-serif;
+    background-color: #f2f2f2;
+    
+}
+
+/* navigation */
 #map { 
+    margin: 10px;
     width: 400px;
-    height: 350px;
+    height: 300px;
     float: right;
+}
+nav{
+    padding: .1rem;
+    background-color: peachpuff;
+    color: whitesmoke;
 }
 
 h1{
-    text-align: center;
+    text-align:center;
     font-size: 3em;
+}
+
+h2{
+    text-align: center;
+    font-size: 1.5em;
+}
+ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    background-color: whitesmoke;
+    
 
 }
 
+img{
+    height:120px;
+    width: 270px;
+    object-fit: cover; /*ajuste la taille si besoin*/
+}
+
+div{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black; ;
+}
+
+/*RESPONSIVE DESIGN*/
+@media (max-width: 1072px) {
+    ul {
+        grid-template-columns: 1fr;
+    }
+    #map {
+        display: none;
+    }
+}
