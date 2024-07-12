@@ -1,4 +1,3 @@
-
 //MAP INTEGRATION//
 //var map = L.map("map").setView([46.227638,2.213749],13);
 var map_Paris = L.map("map").setView([48.866667, 2.333333], 12);
@@ -19,37 +18,37 @@ fetch(
   .then((data) => {
     const element = data.results;
     for (let i = 0; i < element.length; i++) {
-      const liElement = document.createElement("div");
+      const divElement = document.createElement("div");
+      divElement.className = "maDiv";
       const title = document.createElement("h2");
       title.innerText = element[i].nom;
       const adress = document.createElement("span");
-      adress.innerText =  `${element[i].adresse} ${element[i].ville} ${element[i].cp}`;
-      // const cp = document.createElement("span");
-      // cp.innerText = element[i].cp;
-      // const ville = document.createElement("span");
-      // ville.innerText = ` ${element[i].ville}`;
+      adress.innerText = `adresse : ${element[i].adresse} ${element[i].ville} ${element[i].cp}`;
       const lien = document.createElement("a");
       lien.href = "http://" + element[i].web;
+      lien.target = "_blank";
       lien.innerHTML = "<strong>Visite le coworking</strong>";
-    
+
       // Création de l'image
       const img = document.createElement("img");
-      img.src = `img/coworking${i+1}.jpg`; 
-  
+      img.src = `img/coworking${i + 1}.jpg`;
+
       //Marqueur Coworking + donnée lat/long
       const longtitude = element[i].coordonnees.lon;
       const latitude = element[i].coordonnees.lat;
       var marker1 = L.marker([latitude, longtitude]).addTo(map_Paris);
-      marker1.bindPopup(`${ element[i].nom}<br><a href="${lien.href}">Visitez ce site</a>`);
- 
-      ulElement.appendChild(liElement);
-      liElement.appendChild(img);
-      liElement.appendChild(title);
-      liElement.appendChild(adress);
-      liElement.appendChild(document.createElement("br")); // Ajoute un saut de ligne
-      // liElement.appendChild(cp);
+      marker1.bindPopup(
+        `${element[i].nom}<br><a href="${lien.href}" target="_blank">Visitez ce site</a>`
+      );
+
+      ulElement.appendChild(divElement);
+      divElement.appendChild(img);
+      divElement.appendChild(title);
+      divElement.appendChild(adress);
+      divElement.appendChild(document.createElement("br")); // Ajoute un saut de ligne
+      // divElement.appendChild(cp);
       // liElement.appendChild(ville);
-      liElement.appendChild(document.createElement("br")); // Ajoute un saut de ligne
-      liElement.appendChild(lien);
+      divElement.appendChild(document.createElement("br")); // Ajoute un saut de ligne
+      divElement.appendChild(lien);
     }
   });
