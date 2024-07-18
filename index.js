@@ -1,5 +1,10 @@
+// Fonction pour afficher la carte et masquer le bouton
+function showMap(){
+  document.getElementById('map').style.display = 'block';
+  document.getElementById('showMapButton').style.display = 'none';
+}
+
 //MAP INTEGRATION//
-//var map = L.map("map").setView([46.227638,2.213749],13);
 var map_Paris = L.map("map").setView([48.866667, 2.333333], 12);
 
 //Ajout des tuiles à la map
