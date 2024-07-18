@@ -16,17 +16,24 @@
   <body>
     <nav>
       <h1>Coworkings à Paris</h1>
-        <div class="barre">
-          <label for="name">Recherche un lieu</label>
-          <input type="text">
+      <div class="barre">
+        <!-- <label for="name">Recherche un lieu</label> -->
+        <input type="text" placeholder="Recherche ton lieu" />
+        <i class="fas fa-search"></i>
+      </div>
     </nav>
 
     <main>
       <!--ajout la carte-->
       <div id="map"></div>
-
+      <div class="cards_maps">
+        <button onclick="showMap()">Afficher la carte</button>
+      </div>
       <ul></ul>
-
+      <script
+        src="https://kit.fontawesome.com/20ff75feb9.js"
+        crossorigin="anonymous"
+      ></script>
       <script
         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
